@@ -1,0 +1,143 @@
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+
+// Točke poti za rešitev labirinta
+var solutionPath = [
+    { x: 234, y: 2 },
+    { x: 234, y: 10 },
+    { x: 170, y: 10 },
+    { x: 170, y: 42 },
+    { x: 186, y: 42 },
+    { x: 186, y: 106 },
+    { x: 154, y: 106 },
+    { x: 154, y: 74 },
+    { x: 138, y: 74 },
+    { x: 138, y: 106 },
+    { x: 106, y: 106 },
+    { x: 106, y: 122 },
+    { x: 138, y: 122 },
+    { x: 138, y: 154 },
+    { x: 106, y: 154 },
+    { x: 106, y: 170 },
+    { x: 122, y: 170 },
+    { x: 122, y: 186 },
+    { x: 154, y: 186 },
+    { x: 154, y: 154 },
+    { x: 170, y: 154 },
+    { x: 170, y: 122 },
+    { x: 202, y: 122 },
+    { x: 202, y: 154 },
+    { x: 218, y: 154 },
+    { x: 218, y: 170 },
+    { x: 202, y: 170 },
+    { x: 202, y: 186 },
+    { x: 234, y: 186 },
+    { x: 234, y: 202 },
+    { x: 202, y: 202 },
+    { x: 202, y: 234 },
+    { x: 186, y: 234 },
+    { x: 186, y: 250 },
+    { x: 170, y: 250 },
+    { x: 170, y: 234 },
+    { x: 122, y: 234 },
+    { x: 122, y: 218 },
+    { x: 74, y: 218 },
+    { x: 74, y: 234 },
+    { x: 90, y: 234 },
+    { x: 90, y: 250 },
+    { x: 58, y: 250 },
+    { x: 58, y: 266 },
+    { x: 74, y: 266 },
+    { x: 74, y: 282 },
+    { x: 106, y: 282 },
+    { x: 106, y: 298 },
+    { x: 122, y: 298 },
+    { x: 122, y: 314 },
+    { x: 138, y: 314 },
+    { x: 138, y: 298 },
+    { x: 154, y: 298 },
+    { x: 154, y: 314 },
+    { x: 186, y: 314 },
+    { x: 186, y: 298 },
+    { x: 202, y: 298 },
+    { x: 202, y: 314 },
+    { x: 218, y: 314 },
+    { x: 218, y: 330 },
+    { x: 186, y: 330 },
+    { x: 186, y: 346 },
+    { x: 154, y: 346 },
+    { x: 154, y: 362 },
+    { x: 138, y: 362 },
+    { x: 138, y: 346 },
+    { x: 122, y: 346 },
+    { x: 122, y: 410 },
+    { x: 138, y: 410 },
+    { x: 138, y: 426 },
+    { x: 122, y: 426 },
+    { x: 122, y: 442 },
+    { x: 106, y: 442 },
+    { x: 106, y: 458 },
+    { x: 122, y: 458 },
+    { x: 122, y: 474 },
+    { x: 138, y: 474 },
+    { x: 138, y: 442 },
+    { x: 154, y: 442 },
+    { x: 154, y: 426 },
+    { x: 186, y: 426 },
+    { x: 186, y: 378 },
+    { x: 202, y: 378 },
+    { x: 202, y: 346 },
+    { x: 218, y: 346 },
+    { x: 218, y: 362 },
+    { x: 234, y: 362 },
+    { x: 234, y: 378 },
+    { x: 218, y: 378 },
+    { x: 218, y: 394 },
+    { x: 234, y: 394 },
+    { x: 234, y: 410 },
+    { x: 218, y: 410 },
+    { x: 218, y: 426 },
+    { x: 250, y: 426 },
+    { x: 250, y: 410 },
+    { x: 298, y: 410 },
+    { x: 298, y: 426 },
+    { x: 266, y: 426 },
+    { x: 266, y: 442 },
+    { x: 282, y: 442 },
+    { x: 282, y: 458 },
+    { x: 298, y: 458 },
+    { x: 298, y: 442 },
+    { x: 314, y: 442 },
+    { x: 314, y: 410 },
+    { x: 346, y: 410 },
+    { x: 346, y: 426 },
+    { x: 330, y: 426 },
+    { x: 330, y: 458 },
+    { x: 314, y: 458 },
+    { x: 314, y: 474 },
+    { x: 266, y: 474 },
+    { x: 266, y: 458 },
+    { x: 250, y: 458 },
+    { x: 250, y: 482 },
+];
+
+// Animacija risanja poti
+var currentStep = 0;
+
+function animateSolution() {
+    if (currentStep < solutionPath.length - 1) {
+        ctx.beginPath();
+        ctx.strokeStyle = "#ff0000";
+        ctx.lineWidth = 2;
+        ctx.lineCap = "square";
+        ctx.moveTo(solutionPath[currentStep].x, solutionPath[currentStep].y);
+        ctx.lineTo(solutionPath[currentStep + 1].x, solutionPath[currentStep + 1].y);
+        ctx.stroke();
+        currentStep++;
+    } else {
+        clearInterval(animationInterval);
+    }
+}
+
+// Interval za animacijo
+var animationInterval = setInterval(animateSolution, 100);
