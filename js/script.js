@@ -873,7 +873,7 @@ function drawMaze() {
 function credits(){
     Swal.fire({
         title: 'Vizitka',
-        text: 'Tian Mermolđa 4. Rb, 2024',
+        text: 'Tian Mermolja 4. Rb, 2024',
         icon: 'info',
         confirmButtonText: 'OK',
     })
