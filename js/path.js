@@ -34,14 +34,14 @@ var solutionPath = [
     { x: 266, y: 474 }, { x: 266, y: 458 }, { x: 250, y: 458 }, { x: 250, y: 482 },
 ];
 
-var currentStep = 0;
-var progress = 0;
+var currentStep = 0; //na katerem delu poti je kvadratek.
+var progress = 0; //koliko je napredoval od enega do drugega koraka
 var speed = 0.1; // Povečana hitrost za bolj gladko animacijo
-var rectSize = 6; // Povečana velikost kvadratka
+var rectSize = 6; // velikost kvadratka
 
-var offset = -3; // Polovica širine poti, če je pot široka 12 px
+var offset = -3; //popravek koordinat, da se poravna na sredino poti.
 
-var solutionPath = solutionPath.map(point => ({
+var solutionPath = solutionPath.map(point => ({  //se premakne bolj natacno po sredini
     x: point.x + offset,
     y: point.y + offset
 }));
@@ -78,7 +78,7 @@ function animateSolution() {
     }
 }
 
-function draw() {
+function draw() {   //ce ni narisano - začne, če je narisano - začne brisat                        
     console.log(isdrawn + " isdrawing:" + isdrawing);
 
     if (!isdrawn && !isdrawing) {
@@ -125,4 +125,3 @@ function deleteSolution() {
     }
 }
 
-//animateSolution();
